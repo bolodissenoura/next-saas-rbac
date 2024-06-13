@@ -1,19 +1,7 @@
 {
-  "name": "@saas/eslint-config",
+  "name": "@saas/tsconfig",
   "version": "0.0.0",
   "private": true,
-  "files": [
-    "library.js",
-    "next.js",
-    "node.js"
-  ],
-  "devDependencies": {
-    "@rocketseat/eslint-config": "^2.2.2",
-    "eslint-plugin-simple-import-sort": "^12.0.0",
-    "@saas/prettier": "workspace:*"
-  },
-  "prettier": "@saas/prettier",
-  "eslintConfig": {
-    "extends": ["./library.js"]
-  }
+  "license": "MIT",
+  "files": ["library.json", "node.json", "nextjs.json"]
 }
