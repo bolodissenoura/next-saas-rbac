@@ -13,6 +13,10 @@ importers:
         version: 1.13.2
 
   apps/api:
+    dependencies:
+      '@saas/auth':
+        specifier: workspace:*
+        version: link:../../packages/auth
     devDependencies:
       '@saas/eslint-config':
         specifier: workspace:*
@@ -24,10 +28,10 @@ importers:
         specifier: workspace:*
         version: link:../../config/typescript-config
       '@types/node':
-        specifier: ^20.14.2
+        specifier: ^20.12.6
         version: 20.14.2
       tsx:
-        specifier: ^4.15.4
+        specifier: ^4.7.2
         version: 4.15.4
 
   config/eslint-config:
