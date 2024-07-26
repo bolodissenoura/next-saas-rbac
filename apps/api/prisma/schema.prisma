@@ -21,6 +21,7 @@ model User {
   invites            Invite[]
   member_on          Member[]
   owns_organizations Organization[]
+  owns_projects      Project[]
 
   @@map("users")
 }
@@ -93,22 +94,39 @@ model Member {
 }
 
 model Organization {
-  id     String  @id @default(uuid())
-  name   String
-  slug   String  @unique
-  domain String? @unique
+  id                        String   @id @default(uuid())
+  name                      String
+  slug                      String   @unique
+  domain                    String?  @unique
+  shouldAttachUsersByDomain Boolean  @default(false) @map("should_attach_users_by_domain")
+  avatarUrl                 String?  @map("avatar_url")
+  createdAt                 DateTime @default(now()) @map("created_at")
+  updatedAt                 DateTime @updatedAt @map("updated_at")
 
   owner  User   @relation(fields: [userId], references: [id])
   userId String @map("user_id")
 
-  invites Invite[]
-  members Member[]
+  invites  Invite[]
+  members  Member[]
+  projects Project[]
 
   @@map("organizations")
 }
 
 model Project {
-  id String @id @default(uuid())
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  slug        String   @unique
+  avatarUrl   String?  @map("avatar_url")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String       @map("organization_id")
+
+  owner  User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
 
   @@map("projects")
 }
