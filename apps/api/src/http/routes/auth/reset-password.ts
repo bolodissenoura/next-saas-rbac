@@ -45,6 +45,6 @@ export async function resetPassword(app: FastifyInstance) {
       })
 
       return reply.status(204).send()
-    }
+    },
   )
 }
