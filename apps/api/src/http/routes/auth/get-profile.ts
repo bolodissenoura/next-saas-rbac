@@ -16,6 +16,7 @@ export async function getProfile(app: FastifyInstance) {
         schema: {
           tags: ['Auth'],
           summary: 'Get authenticated user profile',
+          security: [{ bearerAuth: [] }],
           response: {
             200: z.object({
               user: z.object({
@@ -48,6 +49,6 @@ export async function getProfile(app: FastifyInstance) {
         }
 
         return reply.send({ user })
-      }
+      },
     )
 }
