@@ -3,7 +3,7 @@ import fastifySwagger from '@fastify/swagger'
 import fastifySwaggerUI from '@fastify/swagger-ui'
 import fastifyJwt from '@fastify/jwt'
 import { fastifyCors } from '@fastify/cors'
-
+import { errorHandler } from '@/http/error-handler'
 import {
   jsonSchemaTransform,
   serializerCompiler,
@@ -18,6 +18,8 @@ const app = fastify().withTypeProvider<ZodTypeProvider>()
 
 app.setSerializerCompiler(serializerCompiler)
 app.setValidatorCompiler(validatorCompiler)
+
+app.setErrorHandler(errorHandler)
 
 app.register(fastifySwagger, {
   openapi: {
