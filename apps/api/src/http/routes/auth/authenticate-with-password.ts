@@ -1,9 +1,9 @@
 import { compare } from 'bcryptjs'
 import type { FastifyInstance } from 'fastify'
 import type { ZodTypeProvider } from 'fastify-type-provider-zod'
-import { BadRequestError } from '@/http/routes/_errors/bad-request-error'
 import z from 'zod'
 
+import { BadRequestError } from '@/http/routes/_errors/bad-request-error'
 import { prisma } from '@/lib/prisma'
 
 export async function authenticateWithPassword(app: FastifyInstance) {
@@ -18,9 +18,6 @@ export async function authenticateWithPassword(app: FastifyInstance) {
           password: z.string(),
         }),
         response: {
-          400: z.object({
-            message: z.string(),
-          }),
           201: z.object({
             token: z.string(),
           }),
